@@ -19,6 +19,18 @@ pipeline {
                 }
             }
         }
+
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'SonarScanner' 
+                    withSonarQubeEnv('SonarQube-Server') { 
+                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my-project-key -Dsonar.sources=."
+                    }
+                }
+            }
+        }
+
         stage('Deliver') { 
             steps {
                 sh './jenkins/scripts/deliver.sh' 
