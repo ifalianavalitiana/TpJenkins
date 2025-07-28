@@ -26,7 +26,7 @@ pipeline {
                     def scannerHome = tool 'SonarScanner' 
                     withSonarQubeEnv('SonarQube-Server') { 
                     //sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my-project-key -Dsonar.sources=."
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my-project-key -Dsonar.sources=. -Dsonar.java.binaries=target/classes"
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=tp-jenkins -Dsonar.sources=. -Dsonar.java.binaries=target/classes"
                     }
                 }
             }
