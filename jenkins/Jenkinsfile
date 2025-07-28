@@ -32,6 +32,16 @@ pipeline {
             }
         }
 
+        stage('Quality Gate Check') {
+            steps {
+                script {
+                        def qualityGate = waitForQualityGate()
+                        if (qualityGate.status != 'OK') {
+                            error "SonarQube Quality Gate failed!"
+                        }
+                    }
+                }
+            }
         stage('Deliver') { 
             steps {
                 sh './jenkins/scripts/deliver.sh' 
